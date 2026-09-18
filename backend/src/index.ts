@@ -4,13 +4,13 @@ import { GoogleGenAI } from "@google/genai";
 import { BASE_PROMPT, getSystemPrompt } from "./prompts.js";
 import { basePrompt as nodeBasePrompt } from "./defaults/node.js";
 import { basePrompt as reactBasePrompt } from "./defaults/react.js";
-// import cors from "cors";
+import cors from "cors"
 
 const ai = new GoogleGenAI({});
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 // =========================
@@ -93,9 +93,15 @@ app.post("/chat", async (req, res) => {
   try {
     const messages = req.body.messages;
 
+    const input = messages
+      .map((message: any) => {
+        return `${message.role}: ${message.content}`;
+      })
+      .join("\n\n");
+
     const interaction = await ai.interactions.create({
       model: "gemini-3.6-flash",
-      input: messages,
+      input: input,
       system_instruction: getSystemPrompt(),
       
     });
