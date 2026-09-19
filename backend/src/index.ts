@@ -13,9 +13,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// =========================
-// TEMPLATE
-// =========================
 
 app.post("/template", async (req, res) => {
   try {
@@ -85,9 +82,6 @@ Here is a list of files that exist on the file system but are not being shown to
   }
 });
 
-// =========================
-// CHAT
-// =========================
 
 app.post("/chat", async (req, res) => {
   try {
