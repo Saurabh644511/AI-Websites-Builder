@@ -1,11 +1,3 @@
-// export enum StepType {
-//   CreateFile,
-//   CreateFolder,
-//   EditFile,
-//   DeleteFile,
-//   RunScript
-// }
-
 export const StepType = {
   CreateFile: 0,
   CreateFolder: 1,
