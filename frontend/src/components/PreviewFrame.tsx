@@ -1,13 +1,11 @@
 import { WebContainer } from '@webcontainer/api';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PreviewFrameProps {
-  files: any[];
   webContainer: WebContainer;
 }
 
 export function PreviewFrame({
-  files,
   webContainer,
 }: PreviewFrameProps) {
   const [url, setUrl] = useState('');
@@ -17,7 +15,6 @@ export function PreviewFrame({
 
     const main = async () => {
       try {
-        
         webContainer.on('server-ready', (port, url) => {
           console.log('Server ready!');
           console.log('Port:', port);
@@ -28,7 +25,6 @@ export function PreviewFrame({
           }
         });
 
-        
         console.log('Installing dependencies...');
 
         const installProcess = await webContainer.spawn(
@@ -59,20 +55,13 @@ export function PreviewFrame({
           return;
         }
 
-
         console.log('Starting development server...');
 
-        await webContainer.spawn('npm', [
-          'run',
-          'dev',
-        ]);
+        await webContainer.spawn('npm', ['run', 'dev']);
 
         console.log('Development server started');
       } catch (error) {
-        console.error(
-          'Preview error:',
-          error
-        );
+        console.error('Preview error:', error);
       }
     };
 
@@ -87,9 +76,7 @@ export function PreviewFrame({
     <div className="h-full flex items-center justify-center text-gray-400">
       {!url && (
         <div className="text-center">
-          <p className="mb-2">
-            Loading...
-          </p>
+          <p className="mb-2">Loading...</p>
         </div>
       )}
 
