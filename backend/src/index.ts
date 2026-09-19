@@ -16,9 +16,6 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 
-// ==============================
-// TEMPLATE
-// ==============================
 
 app.post("/template", async (req, res) => {
   try {
@@ -26,9 +23,6 @@ app.post("/template", async (req, res) => {
 
     console.log("Template request:", prompt);
 
-    // No Gemini call here.
-    // Since this project is a React/Vite builder,
-    // directly return the React template.
 
     res.json({
       prompts: [
@@ -59,10 +53,6 @@ Here is a list of files that exist on the file system but are not being shown to
   }
 });
 
-
-// ==============================
-// CHAT
-// ==============================
 
 app.post("/chat", async (req, res) => {
   try {
