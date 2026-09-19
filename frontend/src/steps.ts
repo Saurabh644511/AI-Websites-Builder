@@ -1,4 +1,5 @@
-import { Step, StepType } from './types';
+import { StepType } from './types';
+import type { Step } from './types';
 
 /*
  * Parse input XML and convert it into steps.
